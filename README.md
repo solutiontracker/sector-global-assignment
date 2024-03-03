@@ -4,8 +4,8 @@
 
 Here is project structure divided into three parts
 
-1. /elogbooks-api (Laravel backend)
-2. /elogbooks-react (React frontend) 
+1. /api (Laravel backend)
+2. /react (React frontend) 
 3. /laradock (Docker setup to create development environment for laravel and React)
 
 ### Docker setup
@@ -17,11 +17,12 @@ There are so many services configured in this setup that we could need during ph
 I have just setup docker for this demo, if you need more detail how to setup docker in more detail. Go here: [Laradock setup](https://laradock.io/).
 
 1. If not already done, [install Docker](https://docs.docker.com/get-docker/). After docker has been installed.
-2. Go to this location for backend laravel project nginx configuration. laradock/nginx/sites/elogbooks-api.conf 
+
+2. Go to this location for backend laravel project nginx configuration. laradock/nginx/sites/default.conf 
 
     Nginx server configuration for you backend laravel project to run it on local domain name.
 
-    In my case i have added server_name elogbooks.api.
+    In my case i have added server_name sector-global.api.
 ```
 server {
 
@@ -34,8 +35,8 @@ server {
     # ssl_certificate /etc/nginx/ssl/default.crt;
     # ssl_certificate_key /etc/nginx/ssl/default.key;
 
-    server_name elogbooks.api;
-    root /var/www/elogbooks-api/public;
+    server_name sector-global.api;
+    root /var/www/api/public;
     index index.php index.html index.htm;
 
     location / {
@@ -70,19 +71,19 @@ server {
 
 3. Edit /etc/hosts file on host machine, and add a record:
 ```
-127.0.0.1       elogbooks.api
+127.0.0.1       sector-global.api
 ```
-4. Go to this location for react project nginx configuration. laradock/nginx/sites/elogbooks-react.conf 
+4. Go to this location for react project nginx configuration. laradock/nginx/sites/sector-global-react.conf 
 
     Nginx server configuration for you react project to run deployed build on local domain name.
 
-    In my case i have added server_name elogbooks.react.
+    In my case i have added server_name sector-global-react.
 ```
 server {
         listen 80;
         listen [::]:80;
-        server_name elogbooks.react;
-        root /var/www/elogbooks-react/build;
+        server_name sector-global-react;
+        root /var/www/react/build;
         index index.html;
         location / {
                 try_files $uri $uri/ /index.html =404;
@@ -91,7 +92,7 @@ server {
 ```
 5. Edit /etc/hosts file on host machine, and add a record:
 ```
-127.0.0.1       elogbooks.react
+127.0.0.1       sector-global-react
 ```
 6. Go to root of laravel application and rename .env.example to .env
 
@@ -117,11 +118,11 @@ docker-compose up -d nginx  phpmyadmin workspace
 
    This is root point of it
 ```
-http://elogbooks.api
+http://sector-global.api
 ```
 10. You can open your deployed react application from this endpoint.
 ```
-http://elogbooks.react
+http://sector-global-react
 ```
 
 11. You can look basic laravel implementation with some basic operations/features.
@@ -129,25 +130,18 @@ http://elogbooks.react
 
 #### Features
 
-* Migrations
-* Seeding with adding some fake data (In my case i have added some entries in properties table)
-* Validation classes
 * routing
 * Service layer separating your business logic
-* Models creations
 * Controller creations
-* Resources creation for api responses
-* pagination
-* search
 
-12. You can look basic react implementation with a list and
-‘log a job’ view
+12. You can look basic front end implementation
    
 #### Features
 * Basic structure for small scale application
 * Routing
 * Redux setup with saga and logging (State management tool).
-* Added react material ui library for UI components.
+* Added bootstrap ui library for UI components.
 * Added axios for api calls
-* pagination
-* searching table view
+
+#### Task
+* create a tree view checkbox component
