@@ -144,4 +144,21 @@ http://sector-global-react
 * Added axios for api calls
 
 #### Task
-* create a tree view checkbox component
+* Create a basic design as per assignment
+* Create a tree view checkbox component
+* Render a tree view of checkboxes from the JSON source [Json load using api from Laravel]
+* Parents can be expanded / collapsed to show / hide the children.
+* Allow the checkboxes to be checked / unchecked and the information stored in a form that could be submitted.[Implemented as it is]
+* There should be no technical limit or restriction on the depth (number of levels) of the tree.[Implemented as it is by adding more levels]
+* If a child is selected its parents should have an indeterminate state (or visual indicator) to show that the element is partially selected.
+
+
+The JSON data represents a demographic in our platform, which is like an attribute that can be attached to various models such as a person or a company.
+
+The first level is the demographic itself, it has an ID,  code, and name.  Think of this like a question “What is the main activity of your company?”
+
+It also has an array of values, these are the possible answers that the user can select from.
+
+Each value or answer has an ID, code, and name.
+
+If the answer has children then these are stored in the descendants array.
