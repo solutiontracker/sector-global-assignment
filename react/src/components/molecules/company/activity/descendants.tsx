@@ -27,11 +27,11 @@ const Descendants = ({ values, my, activity_id }: props): ReactElement => {
                                 e.stopPropagation();
                                 if (value?.descendants?.length > 0) {
                                     const result = value?.descendants?.filter((value: any, key: number) => value?.descendants?.length === 0 && !InArray(value.id, ids));
+                                    const children = Children(findById(activities?.find((activity: any, key: number) => activity.id === activity_id)?.values, value.id)?.descendants, []);
                                     if (result.length > 0) {
-                                        dispatchIdsAction({ ids: [...ids, ...Children(findById(activities?.find((activity: any, key: number) => activity.id === activity_id)?.values, value.id)?.descendants, [])] });
+                                        dispatchIdsAction({ ids: [...ids, ...children] });
                                     } else if (result.length === 0) {
-                                        const result = value?.descendants?.map((descendant: any, key: any) => descendant.id)
-                                        dispatchIdsAction({ ids: ids?.filter((id: number, key: any) => !InArray(id, result)) })
+                                        dispatchIdsAction({ ids: ids?.filter((id: number, key: any) => !InArray(id, children)) })
                                     }
                                 } else {
                                     const result = ids?.filter((id: number, key: any) => id === value.id);
